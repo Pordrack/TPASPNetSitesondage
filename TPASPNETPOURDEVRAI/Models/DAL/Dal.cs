@@ -47,7 +47,7 @@ namespace TPASPNETPOURDEVRAI.Models.DAL
         }
 
         public void ModifierRestaurant(int idResto, string nom, string adresse, string telephone, string email)
-        {rerty
+        {
             throw new NotImplementedException();
         }
 
@@ -73,7 +73,7 @@ namespace TPASPNETPOURDEVRAI.Models.DAL
 
         public bool RestaurantExist(string nom)
         {
-            return mySoireeContext.Restaurants.Where(r=>r.Nom==nom).Count()>0;
+            return mySoireeContext.Restaurants.Any(r=>r.Nom==nom);
         }
 
         public bool VoteExist(int idSondage, int idEtudiant)

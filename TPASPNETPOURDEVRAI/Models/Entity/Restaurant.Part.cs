@@ -8,7 +8,7 @@ using System.Web;
 namespace TPASPNETPOURDEVRAI.Models.Entity
 {
     [MetadataType(typeof(RestaurantMetadata))]
-    public partial class Restaurant : ValidationResult
+    public partial class Restaurant : IValidatableObject
     {
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

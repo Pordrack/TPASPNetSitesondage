@@ -31,12 +31,19 @@ namespace TPASPNETPOURDEVRAI.Controllers
             {
                 if (dal.RestaurantExist(poResto.Nom))
                 {
+                    ModelState.AddModelError("nom", "Le restaurant qui porte ce nom existe deja !");
                     return View(poResto);
                 }
                 dal.CreerRestaurant(poResto.Nom, poResto.Adresse, poResto.Telephone, poResto.Email);
             }
 
-                return View();
+            return View();
+        }
+
+        private readonly IDal _dal;
+        public RestaurantController(IDal dal)
+        {
+            _dal = dal;
         }
     }
 }
