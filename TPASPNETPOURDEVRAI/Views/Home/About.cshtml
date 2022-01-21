@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "About us";
+}
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>A propos de nous, il n'y a pas grand chose a savoir.</p>
+
+@for (var i = 0; i < ViewBag.NumberOfRaccons; i++)
+{
+    <img src=@ViewBag.Image> </img>
+}
