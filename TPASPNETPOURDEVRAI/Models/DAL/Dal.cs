@@ -48,7 +48,12 @@ namespace TPASPNETPOURDEVRAI.Models.DAL
 
         public void ModifierRestaurant(int idResto, string nom, string adresse, string telephone, string email)
         {
-            throw new NotImplementedException();
+            Restaurant restoAModifier = mySoireeContext.Restaurants.Find(idResto);
+            restoAModifier.Nom = nom;
+            restoAModifier.Adresse = adresse;
+            restoAModifier.Telephone = telephone;
+            restoAModifier.Email = email;
+            mySoireeContext.SaveChanges();
         }
 
         public Eleve RenvoieEtudiant(int idEtudiant)
@@ -58,7 +63,7 @@ namespace TPASPNETPOURDEVRAI.Models.DAL
 
         public Restaurant RenvoieRestaurant(int idRestaurant)
         {
-            throw new NotImplementedException();
+            return mySoireeContext.Restaurants.Find(idRestaurant);
         }
 
         public IList<Resultat> RenvoieResultat(int idSondage)
@@ -68,7 +73,7 @@ namespace TPASPNETPOURDEVRAI.Models.DAL
 
         public IList<Restaurant> RenvoieTousLesRestaurants()
         {
-            throw new NotImplementedException();
+            return mySoireeContext.Restaurants.ToList();
         }
 
         public bool RestaurantExist(string nom)

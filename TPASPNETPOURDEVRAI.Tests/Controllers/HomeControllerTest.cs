@@ -9,7 +9,7 @@ using TPASPNETPOURDEVRAI.Controllers;
 
 namespace TPASPNETPOURDEVRAI.Tests.Controllers
 {
-    [TestClass]
+    /*TestClass]
     public class HomeControllerTest
     {
         [TestMethod]
@@ -50,5 +50,5 @@ namespace TPASPNETPOURDEVRAI.Tests.Controllers
             // Assert
             Assert.IsNotNull(result);
         }
-    }
+    }*/
 }

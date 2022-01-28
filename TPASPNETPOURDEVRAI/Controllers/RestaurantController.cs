@@ -13,7 +13,55 @@ namespace TPASPNETPOURDEVRAI.Controllers
         // GET: Restaurant
         public ActionResult Index()
         {
-            return View();
+            using (var dal = new Dal())
+            {
+                return View(dal.RenvoieTousLesRestaurants());
+            }
+            
+        }
+
+        public ActionResult AfficherRestaurant(int? id)
+        {
+            using (var dal = new Dal())
+            {
+                if (id != null)
+                {
+                    return View(dal.RenvoieRestaurant((int)id));
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+        }
+
+        public ActionResult ModifierRestaurant(int? id)
+        {
+            using (var dal = new Dal())
+            {
+                if (id != null)
+                {
+                    return View(dal.RenvoieRestaurant((int)id));
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+        }
+
+        [HttpPost] //HttpPost=Mode post formulaire
+        public ActionResult ModifierRestaurant(Restaurant poResto)
+        {
+            if (!ModelState.IsValid)
+                return View(poResto);
+
+            using (var dal = new Dal())
+            {
+                dal.ModifierRestaurant(poResto.Id, poResto.Nom, poResto.Adresse, poResto.Telephone, poResto.Email);
+            }
+
+            return RedirectToAction("AfficherRestaurant/" + poResto.Id.ToString());
         }
 
         public ActionResult CreerRestaurant()
@@ -21,7 +69,7 @@ namespace TPASPNETPOURDEVRAI.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost] //HttpPost=Mode post formulaire
         public ActionResult CreerRestaurant(Restaurant poResto)
         {
             if (!ModelState.IsValid)
@@ -37,7 +85,7 @@ namespace TPASPNETPOURDEVRAI.Controllers
                 dal.CreerRestaurant(poResto.Nom, poResto.Adresse, poResto.Telephone, poResto.Email);
             }
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         private readonly IDal _dal;
