@@ -8,9 +8,11 @@ using TPASPNETPOURDEVRAI.Models.DAL;
 
 namespace TPASPNETPOURDEVRAI.Controllers
 {
+    [Authorize]
     public class RestaurantController : Controller
     {
         // GET: Restaurant
+        [AllowAnonymous]
         public ActionResult Index()
         {
             using (var dal = new Dal())
@@ -20,6 +22,7 @@ namespace TPASPNETPOURDEVRAI.Controllers
             
         }
 
+        [AllowAnonymous]
         public ActionResult AfficherRestaurant(int? id)
         {
             using (var dal = new Dal())

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using TPASPNETPOURDEVRAI.Models.Entity;
 
 namespace TPASPNETPOURDEVRAI.Models.DAL
@@ -16,7 +17,14 @@ namespace TPASPNETPOURDEVRAI.Models.DAL
 
         public int AjouterEtudiant(string nom, string prenom, string password)
         {
-            throw new NotImplementedException();
+            Eleve eleve = new Eleve();
+            eleve.Nom = nom;
+            eleve.Prenom = prenom;
+            eleve.Password = Crypto.HashPassword(password);
+
+            mySoireeContext.Eleves.Add(eleve);
+            mySoireeContext.SaveChanges();
+            return 1;
         }
 
         public int AjouterVote(int idSondage, int idResto, int idEtudiant)
@@ -26,7 +34,18 @@ namespace TPASPNETPOURDEVRAI.Models.DAL
 
         public Eleve Authentifier(string nom, string password)
         {
-            throw new NotImplementedException();
+            //string hashedPassword = Crypto.HashPassword(password);
+            Eleve eleve = mySoireeContext.Eleves.FirstOrDefault(e => e.Nom == nom);// && hashedPassword==e.Password);
+            //return eleve;
+            if(Crypto.VerifyHashedPassword(eleve.Password, password))
+            {
+                return eleve;
+            }
+            else
+            {
+                return null;
+            }
+            
         }
 
         public int CreerRestaurant(string nom, string adresse, string telephone, string email)
@@ -59,6 +78,11 @@ namespace TPASPNETPOURDEVRAI.Models.DAL
         public Eleve RenvoieEtudiant(int idEtudiant)
         {
             throw new NotImplementedException();
+        }
+
+        public Eleve EtudiantExist(string nomEtudiant)
+        {
+            return mySoireeContext.Eleves.FirstOrDefault(e => e.Nom == nomEtudiant);
         }
 
         public Restaurant RenvoieRestaurant(int idRestaurant)
