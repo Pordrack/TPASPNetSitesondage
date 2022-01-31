@@ -79,6 +79,10 @@ namespace TPASPNETPOURDEVRAI.Controllers
                 new Claim(ClaimTypes.NameIdentifier, eleve.Id.ToString()),
                 new Claim(ClaimTypes.Name, eleve.Nom)
             };
+
+            if (eleve.Role != null)
+                claims.Add(new Claim(ClaimTypes.Role, eleve.Role));
+
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
             HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties()
             {

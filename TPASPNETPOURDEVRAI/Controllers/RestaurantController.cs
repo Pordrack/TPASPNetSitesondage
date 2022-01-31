@@ -22,7 +22,6 @@ namespace TPASPNETPOURDEVRAI.Controllers
             
         }
 
-        [AllowAnonymous]
         public ActionResult AfficherRestaurant(int? id)
         {
             using (var dal = new Dal())
@@ -38,6 +37,7 @@ namespace TPASPNETPOURDEVRAI.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult ModifierRestaurant(int? id)
         {
             using (var dal = new Dal())
@@ -54,6 +54,7 @@ namespace TPASPNETPOURDEVRAI.Controllers
         }
 
         [HttpPost] //HttpPost=Mode post formulaire
+        [Authorize(Roles = "Admin")]
         public ActionResult ModifierRestaurant(Restaurant poResto)
         {
             if (!ModelState.IsValid)
@@ -67,12 +68,14 @@ namespace TPASPNETPOURDEVRAI.Controllers
             return RedirectToAction("AfficherRestaurant/" + poResto.Id.ToString());
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult CreerRestaurant()
         {
             return View();
         }
 
         [HttpPost] //HttpPost=Mode post formulaire
+        [Authorize(Roles = "Admin")]
         public ActionResult CreerRestaurant(Restaurant poResto)
         {
             if (!ModelState.IsValid)
