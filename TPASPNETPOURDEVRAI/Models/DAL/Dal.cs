@@ -60,9 +60,23 @@ namespace TPASPNETPOURDEVRAI.Models.DAL
             return 1;
         }
 
+        public IList<Sondage> RenvoieTousLesSondages()
+        {
+            return mySoireeContext.Sondages.ToList();
+        }
+
         public int CreerSondage(DateTime date)
         {
-            throw new NotImplementedException();
+            Sondage newSondage = new Sondage();
+            newSondage.Date = date;
+            mySoireeContext.Sondages.Add(newSondage);
+            mySoireeContext.SaveChanges();
+            return 1;
+        }
+
+        public bool SondageExiste(DateTime date)
+        {
+            return mySoireeContext.Sondages.Any(s => s.Date == date);
         }
 
         public void ModifierRestaurant(int idResto, string nom, string adresse, string telephone, string email)

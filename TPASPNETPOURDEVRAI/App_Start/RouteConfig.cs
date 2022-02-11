@@ -29,12 +29,12 @@ namespace TPASPNETPOURDEVRAI
                 name: "RestaurantModif",
                 url: "Restaurant/ModifierRestaurant/{id}",
                 defaults: new { controller = "Restaurant", action = "ModifierRestaurant", id = UrlParameter.Optional }
-            ) ; 
+            ) ;
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Sondage", action = "Index", id = UrlParameter.Optional }
             );   
         }
     }
