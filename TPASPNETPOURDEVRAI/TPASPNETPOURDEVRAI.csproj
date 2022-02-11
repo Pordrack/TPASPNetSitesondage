@@ -197,6 +197,7 @@
     <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\SondageController.cs" />
+    <Compile Include="Controllers\VoteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -241,6 +242,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\VoteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SondageSoirée.mdf" />
@@ -330,6 +332,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Photo\" />
+    <Folder Include="Views\Vote\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
